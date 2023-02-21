@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+:root {
+  --body-color: #131224;
+  --btn-color: #8e70df;
+  --chat-bg: #00000076;
+}
+/* img {
+  height: 100%;
+  width: 100%;
+} */
+body {
+  height: 100vh;
+  width: 100vw;
+  background: var(--body-color) !important;
+  overflow: hidden;
+}
