@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
-let p = JSON.parse(localStorage.getItem("chat_app_user")) || {};
+let p = JSON.parse(localStorage.getItem("chat_app_user")) || null;
+
 const AuthProvider = ({ children }) => {
   const [chatter, setChatter] = useState(p);
+  const navigate = useNavigate();
   const signup = async (user) => {
     let { data } = await axios.post("http://localhost:5000/users/signup", user);
     console.log(data);
@@ -14,8 +17,18 @@ const AuthProvider = ({ children }) => {
 
   const login = async (form) => {
     let { data } = await axios.post("http://localhost:5000/users/login", form);
-    console.log(data);
+    if (data.status) {
+      localStorage.setItem("chat_app_user", JSON.stringify(data.user));
+      setChatter({ ...data.user });
+    }
+
     return data;
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("chat_app_user");
+    setChatter({});
+    navigate("/login");
   };
   const toastOptions = {
     position: "bottom-right",
@@ -26,7 +39,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signup, login, toastOptions, chatter, setChatter }}
+      value={{ signup, login, toastOptions, chatter, setChatter, handleLogout }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,0 +1,38 @@
+.chat_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--body-color);
+}
+
+.chat {
+  width: 85%;
+  height: 85vh;
+  background: var(--chat-bg);
+}
+.contacts_container {
+  display: grid;
+  grid-template-rows: 15% 70% 15%;
+  background-color: #080420;
+  max-height: 100%;
+}
+.header {
+  color: white;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.header img {
+  height: 90%;
+}
+.User {
+  background-color: #0d0d30;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.contacts_container2 {
+  max-height: 100%;
+}

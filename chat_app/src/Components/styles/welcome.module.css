@@ -1,0 +1,35 @@
+.welcome_container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  color: white;
+  flex-direction: column;
+}
+.welcome_container img {
+  height: 20rem;
+}
+.welcome_container span {
+  color: #4e0eff;
+}
+
+@media screen and (max-width: 1024px) {
+  .welcome_container {
+    font-size: 4rem;
+    text-align: center;
+    gap: 2rem;
+  }
+  .welcome_container img {
+    height: 10rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .welcome_container {
+    font-size: 1rem;
+    text-align: center;
+    gap: 2rem;
+  }
+  .welcome_container img {
+    height: 10rem;
+  }
+}

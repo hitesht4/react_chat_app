@@ -1,0 +1,35 @@
+.contacts_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  gap: 0.8rem;
+}
+.contacts_div::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: #ffffff39;
+  width: 0.1rem;
+  border-radius: 1rem;
+}
+.contacts_div::-webkit-scrollbar-thumb {
+  background-color: #ffffff39;
+  width: 0.1rem;
+  border-radius: 1rem;
+}
+.contact {
+  background-color: #ffffff34;
+  cursor: pointer;
+  width: 90%;
+  border-radius: 0.2rem;
+  padding: 0.4rem;
+  display: flex;
+
+  align-items: center;
+  transition: 0.5s ease-in-out;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.selected_contact {
+  background-color: #9a86f3;
+}

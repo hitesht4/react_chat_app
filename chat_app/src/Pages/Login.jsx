@@ -6,6 +6,7 @@ import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthProvider";
+import styles from "./styles/form.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,27 +19,28 @@ const Login = () => {
     const inputName = e.target.name;
     setform({ ...form, [inputName]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const sign = await login(form);
     if (!sign.status) {
       toast.error(sign.message, toastOptions);
     } else {
-      localStorage.setItem("chat_app_user", JSON.stringify(sign.user));
-      setChatter({ ...sign.user });
-      navigate("/");
+      navigate("/avatar");
     }
   };
   useEffect(() => {
-    if (chatter) {
+    let check = chatter && localStorage.getItem("chat_app_user");
+    if (check) {
       navigate("/");
     }
   }, []);
+
   return (
-    <div className="Page_div">
-      <div className="form">
+    <div className={styles.Page_div}>
+      <div className={styles.form}>
         <Form onSubmit={handleSubmit}>
-          <div className="brand">
+          <div className={styles.brand}>
             <img src={Logo} alt="logo" />
             <h1>SNAPPY</h1>
           </div>

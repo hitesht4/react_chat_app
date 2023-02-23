@@ -1,55 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
-import Logo from "../assets/logo.svg";
-import { BsFillChatFill } from "react-icons/bs";
-import { AuthContext } from "../context/AuthProvider";
+import React, { useContext, useState } from "react";
+import { ChatContext } from "../context/ChatProvider";
+import { Card } from "react-bootstrap";
+import styles from "./styles/contacts.module.css";
 
-const Contacts = ({ contacts, handleChatChange }) => {
-  const { chatter } = useContext(AuthContext);
+const Contacts = ({ contacts }) => {
+  const { imageUrl, setReciever } = useContext(ChatContext);
   const [chat, setChat] = useState(null);
 
   const changeCurrentChat = (index, contact) => {
     setChat(index);
-    handleChatChange(contact);
+    setReciever(contact);
   };
 
   return (
-    <div className="contacts_container">
-      <div className="contacts_brand">
-        <img src={Logo} alt="" />
-        <h3>snappy</h3>
-      </div>
-      <div className="contacts_div">
-        {contacts.map((contact, index) => {
-          return (
-            <div
-              key={contact._id}
-              className={`contact ${index === chat ? "selected_contact" : ""}`}
-              onClick={() => changeCurrentChat(index, contact)}
-            >
-              <div className="contact_avatar">
-                <img
-                  src={`data:image/svg+xml;base64,${contact.avatar}`}
-                  alt=""
-                />
-              </div>
-              <div className="contact_username">
-                <h3>{contact.username}</h3>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="current_user">
-        <div>
-          <img
-            src={`data:image/svg+xml;base64,${chatter.avatar}`}
-            alt="avatar"
-          />
-        </div>
-        <div>
-          <h2>{chatter.username}</h2>
-        </div>
-      </div>
+    <div className={styles.contacts_div}>
+      {contacts.map((contact, index) => {
+        return (
+          <Card
+            key={contact._id}
+            className={`${styles.contact} d-flex flex-row align-items-center ${
+              index === chat ? `${styles.selected_contact}` : ""
+            }`}
+            onClick={() => changeCurrentChat(index, contact)}
+          >
+            <Card.Img src={`${imageUrl}${contact.avatar}`} className="w-25" />
+            <Card.Body>{contact.username}</Card.Body>
+          </Card>
+        );
+      })}
     </div>
   );
 };

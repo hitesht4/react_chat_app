@@ -2,72 +2,63 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { Buffer } from "buffer";
 import "react-toastify/dist/ReactToastify.css";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 import Avatar from "../Components/Avatar";
 import Logo from "../assets/loader.gif";
+import styles from "./styles/avatar.module.css";
 
 const SetAvator = () => {
-  const api = "https://api.multiavatar.com/13243546";
   const navigate = useNavigate();
+  const { chatter, setChatter } = useContext(AuthContext);
   const [avatars, setAvatar] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
   const { toastOptions } = useContext(AuthContext);
-  useEffect(() => {
-    if (!localStorage.getItem("chat_app_user")) {
-      navigate("/login");
-    }
-  }, []);
 
   const setSelectedAvatar = async () => {
     if (!selected) {
       toast.error("Please Select an Avatar First", toastOptions);
-    } else {
-      const user = await JSON.parse(localStorage.getItem("chat_app_user"));
-      try {
-        var { data } = await axios.post(
-          `http://localhost:5000/users/avatar/${user._id}`,
-          {
-            image: avatars[selected],
-          }
-        );
-      } catch (e) {
-        console.log(e);
+      return;
+    }
+    let { data } = await axios.post(
+      `http://localhost:5000/users/avatar/${chatter._id}`,
+      {
+        image: avatars[selected],
       }
+    );
 
-      if (data.isSet) {
-        user.isAvatarSet = true;
-        user.avatar = data.image;
-        localStorage.setItem("chat_app_user", JSON.stringify(user));
-        navigate("/");
-      } else {
-        toast.error("Error Setting Avatar.Please Try Again", toastOptions);
-      }
+    if (data.isSet) {
+      setChatter({
+        ...chatter,
+        isAvatarSet: true,
+        avatar: data.image.src,
+      });
+      console.log(chatter);
+      localStorage.setItem("chat_app_user", JSON.stringify(chatter));
+      navigate("/");
+    } else {
+      toast.error("Error Setting Avatar.Please Try Again", toastOptions);
     }
   };
   const getData = async () => {
-    let data = [];
-    for (let i = 0; i < 4; i++) {
-      try {
-        let r = await axios.get(`${api}/${Math.round(Math.random() * 1000)}`);
-        var buffer = new Buffer(r.data);
-        data.push(buffer.toString("base64"));
-      } catch (e) {
-        console.log(e.message);
-      }
-    }
+    let { data } = await axios.get(`http://localhost:5000/avatars`);
     setAvatar(data);
     setLoading(false);
   };
 
   useEffect(() => {
-    getData();
+    if (chatter) {
+      getData();
+    } else {
+      navigate("/login");
+    }
   }, []);
-  if (loading) {
+
+  if (loading === true) {
     return (
-      <div className="avatar_container">
+      <div className={styles.avatar_container}>
         <div>
           <img src={Logo} alt="" />
         </div>
@@ -76,15 +67,15 @@ const SetAvator = () => {
   } else {
     return (
       <>
-        <div className="avatar_container">
+        <div className={styles.avatar_container}>
           <h1>Set Your Avatar</h1>
-          <div className="avatars">
+          <div className={styles.avatars}>
             {avatars &&
               avatars.map((item, index) => {
                 return (
                   <Avatar
-                    key={index}
-                    item={item}
+                    key={item._id}
+                    src={item.src}
                     selected={selected}
                     setSelected={setSelected}
                     index={index}
@@ -92,9 +83,13 @@ const SetAvator = () => {
                 );
               })}
           </div>
-          <button className="btn" onClick={setSelectedAvatar}>
+          <Button
+            variant="primary"
+            onClick={setSelectedAvatar}
+            className={styles.buttton}
+          >
             Select Avatar Image
-          </button>
+          </Button>
         </div>
         <ToastContainer />
       </>
@@ -102,4 +97,4 @@ const SetAvator = () => {
   }
 };
 
-export default React.memo(SetAvator);
+export default SetAvator;

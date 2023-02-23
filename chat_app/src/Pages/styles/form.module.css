@@ -1,0 +1,77 @@
+.Page_div {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--body-color);
+}
+.Page_div > div {
+  box-shadow: rgba(18, 85, 157, 0.35) 0px 5px 15px;
+  background: #0b0914;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+.form {
+  width: 27%;
+  padding: 2rem;
+}
+.brand {
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-around;
+  height: 5rem;
+  margin: 1.4rem 0;
+}
+.brand img {
+  width: 40%;
+  height: 100%;
+  aspect-ratio: 1/1;
+}
+.form input {
+  outline: blue !important;
+  border: 2px solid blue;
+  background: var(--body-color);
+  color: white;
+  padding: 0.9rem 0.7rem;
+}
+.form input:focus {
+  outline: blue !important;
+  border: 2px solid blue;
+  background: var(--body-color);
+  color: white;
+}
+.btn {
+  color: white;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border: none;
+  padding: 0.9rem 0.7rem;
+}
+.btn:hover {
+  background-color: blue;
+}
+.image_logo {
+  border: 2px solid green;
+}
+.form p {
+  margin: 1rem 0;
+  color: white;
+  font-size: 1rem;
+}
+.form span {
+  margin: 1rem 0.2rem;
+  color: blue;
+  cursor: pointer;
+}
+@media screen and (max-width: 1080px) {
+  .form {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .form {
+    width: 85%;
+  }
+}

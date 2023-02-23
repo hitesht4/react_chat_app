@@ -8,10 +8,10 @@ import SetAvator from "./Pages/SetAvator";
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Chat />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/avatar" element={<SetAvator />} />
-      <Route path="/" element={<Chat />} />
     </Routes>
   );
 }

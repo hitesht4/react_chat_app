@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
+import { ChatContext } from "../context/ChatProvider";
+import styles from "../Pages/styles/avatar.module.css";
 
-const Avatar = ({ item, selected, setSelected, index }) => {
+const Avatar = ({ src, selected, setSelected, index }) => {
+  const { imageUrl } = useContext(ChatContext);
   return (
-    <div className={`avatar ${selected === index ? "selected" : ""}`}>
+    <div
+      className={`${styles.avatardiv} ${
+        selected === index ? `${styles.selected}` : ""
+      }`}
+    >
       <img
-        src={`data:image/svg+xml;base64,${item}`}
+        src={`${imageUrl}${src}`}
         alt="Avatar"
         onClick={() => {
           setSelected(index);
@@ -14,4 +22,4 @@ const Avatar = ({ item, selected, setSelected, index }) => {
   );
 };
 
-export default React.memo(Avatar);
+export default Avatar;

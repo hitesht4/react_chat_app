@@ -5,6 +5,7 @@ import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../context/AuthProvider";
+import styles from "./styles/form.module.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -56,11 +57,12 @@ const Register = () => {
       navigate("/");
     }
   }, []);
+
   return (
-    <div className="Page_div">
-      <div className="form">
+    <div className={styles.Page_div}>
+      <div className={styles.form}>
         <Form onSubmit={handleSubmit}>
-          <div className="brand">
+          <div className={styles.brand}>
             <img src={Logo} alt="logo" />
 
             <h1>SNAPPY</h1>
