@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 0.5rem;
-  width: 50%;
+  width: 100%;
 }
 .avatardiv {
   flex: 1;
@@ -26,23 +26,20 @@
 .avatardiv.selected {
   border: 0.5rem solid #ff6418;
 }
-.buttton {
-  width: 30%;
-  padding: 0.8rem 0;
+.form_modal {
+  background: var(--body-color);
 }
-@media screen and (max-width: 1024px) {
-  .avatars {
-    width: 90%;
-  }
-  .buttton {
-    width: 50%;
-    padding: 0.8rem 0;
-  }
+.form_title {
+  background: var(--body-color);
+  color: white;
 }
-@media screen and (max-width: 600px) {
-  .avatars {
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0.4rem;
-    width: 70%;
-  }
+.btn {
+  color: white;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border: none;
+  padding: 0.9rem 0.7rem;
+}
+.btn:hover {
+  background-color: blue;
 }

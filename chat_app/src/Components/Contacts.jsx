@@ -1,15 +1,18 @@
 import React, { useContext, useState } from "react";
 import { ChatContext } from "../context/ChatProvider";
 import { Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import styles from "./styles/contacts.module.css";
 
 const Contacts = ({ contacts }) => {
   const { imageUrl, setReciever } = useContext(ChatContext);
   const [chat, setChat] = useState(null);
+  const navigate = useNavigate();
 
   const changeCurrentChat = (index, contact) => {
     setChat(index);
     setReciever(contact);
+    navigate("/chat");
   };
 
   return (

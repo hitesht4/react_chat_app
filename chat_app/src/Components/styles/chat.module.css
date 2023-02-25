@@ -1,4 +1,4 @@
-.chat-messages {
+.chat_messages {
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
@@ -6,10 +6,10 @@
   overflow: auto;
   height: 100% !important;
 }
-.chat-messages::-webkit-scrollbar {
+.chat_messages::-webkit-scrollbar {
   width: 0.2rem;
 }
-.chat-messages::-webkit-scrollbar-thumb {
+.chat_messages::-webkit-scrollbar-thumb {
   background-color: #ffffff39;
   width: 0.1rem;
   border-radius: 1rem;

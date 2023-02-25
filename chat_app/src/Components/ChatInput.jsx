@@ -4,6 +4,7 @@ import Picker from "emoji-picker-react";
 import { IoMdSend } from "react-icons/io";
 import { AuthContext } from "../context/AuthProvider";
 import { ChatContext } from "../context/ChatProvider";
+import styles from "./styles/Input.module.css";
 
 const ChatInput = () => {
   const [show, setShow] = useState(false);
@@ -34,16 +35,23 @@ const ChatInput = () => {
       setSms("");
     }
   };
+
   return (
-    <div className="chat_Input">
-      <div className="button-container">
-        <div className="emoji">
+    <div className={styles.chat_Input}>
+      <div className={styles.button_container}>
+        <div className={styles.emoji}>
           <BsEmojiSmileFill onClick={handleShow} />
-          {show && <Picker onEmojiClick={handleEmojiClick} width={300} />}
+          {show && (
+            <Picker
+              onEmojiClick={handleEmojiClick}
+              width={300}
+              style={{ border: "2px solid red" }}
+            />
+          )}
         </div>
       </div>
 
-      <form className="input-container" onSubmit={handleSubmit}>
+      <form className={styles.input_container} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="type your message here"

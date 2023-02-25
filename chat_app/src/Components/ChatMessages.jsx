@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { ChatContext } from "../context/ChatProvider";
 import { AuthContext } from "../context/AuthProvider";
-import "./styles/chat.css";
+import styles from "./styles/chat.module.css";
 
 const ChatMessages = () => {
   const { reciever, messages, setMessages, getChatMsg, socket } =
@@ -37,11 +37,15 @@ const ChatMessages = () => {
   }, [messages]);
 
   return (
-    <div className="chat-messages">
+    <div className={styles.chat_messages}>
       {messages.map((item, index) => (
         <div key={index} ref={scrollRef}>
-          <div className={`message ${item.fromSelf ? "sended" : "recieved"}`}>
-            <div className="content ">{item.message}</div>
+          <div
+            className={`${styles.message} ${
+              item.fromSelf ? `${styles.sended}` : `${styles.recieved}`
+            }`}
+          >
+            <div className={styles.content}>{item.message}</div>
           </div>
         </div>
       ))}

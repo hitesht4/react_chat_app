@@ -1,38 +1,20 @@
-.chat_container {
+.body_container {
+  height: 100vh;
+  width: 100%;
+  /* overflow: hidden; */
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: var(--body-color);
+  overflow: auto;
 }
-
-.chat {
-  width: 85%;
-  height: 85vh;
+.chat_container {
+  height: calc(100vh - 5.6rem);
+  width: 80%;
   background: var(--chat-bg);
 }
-.contacts_container {
-  display: grid;
-  grid-template-rows: 15% 70% 15%;
-  background-color: #080420;
-  max-height: 100%;
-}
-.header {
-  color: white;
-  background-color: transparent;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-.header img {
-  height: 90%;
-}
-.User {
-  background-color: #0d0d30;
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.contacts_container2 {
-  max-height: 100%;
+@media screen and (max-width: 600px) {
+  .chat_container {
+    width: 95%;
+  }
 }

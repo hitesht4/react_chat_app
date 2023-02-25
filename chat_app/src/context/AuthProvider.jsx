@@ -8,6 +8,14 @@ let p = JSON.parse(localStorage.getItem("chat_app_user")) || null;
 
 const AuthProvider = ({ children }) => {
   const [chatter, setChatter] = useState(p);
+  const [selected, setSelected] = useState(null);
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+    avatar: "",
+  });
   const navigate = useNavigate();
   const signup = async (user) => {
     let { data } = await axios.post("http://localhost:5000/users/signup", user);
@@ -39,7 +47,18 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signup, login, toastOptions, chatter, setChatter, handleLogout }}
+      value={{
+        signup,
+        login,
+        toastOptions,
+        chatter,
+        setChatter,
+        handleLogout,
+        form,
+        setForm,
+        selected,
+        setSelected,
+      }}
     >
       {children}
     </AuthContext.Provider>

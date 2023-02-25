@@ -25,7 +25,7 @@
   margin: 1.4rem 0;
 }
 .brand img {
-  width: 40%;
+  width: 25%;
   height: 100%;
   aspect-ratio: 1/1;
 }
@@ -52,9 +52,7 @@
 .btn:hover {
   background-color: blue;
 }
-.image_logo {
-  border: 2px solid green;
-}
+
 .form p {
   margin: 1rem 0;
   color: white;
