@@ -17,6 +17,10 @@ app.use("/users", users);
 app.use("/avatars", avatars);
 app.use("/messages", message);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to chat Api");
+});
+
 const server = app.listen(port, async () => {
   connect();
   console.log("Listening to port 5000");
@@ -24,7 +28,7 @@ const server = app.listen(port, async () => {
 
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://chat-m76ejmiwu-hitesht4.vercel.app/",
     credentials: true,
   },
 });

@@ -5,7 +5,7 @@ const argon = require("argon2");
 
 router.post("/signup", async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    const { email, username, password, avatar } = req.body;
     const check = await user.findOne({ email: email });
     if (check) {
       return res.send({ message: "User Already Registerd", status: false });
@@ -14,23 +14,29 @@ router.post("/signup", async (req, res) => {
     if (check2) {
       return res.send({ message: "Username Already taken", status: false });
     }
-    const hash = await argon.hash(password);
-    const newUser = await new user({
-      email,
-      username,
-      password: hash,
-    });
-    newUser.save();
-    return res.send({
-      message: "User Registered Successfully",
-      data: newUser,
-      status: true,
-    });
+    if (avatar !== "") {
+      const hash = await argon.hash(password);
+      const newUser = await new user({
+        email,
+        username,
+        password: hash,
+        avatar,
+      });
+      newUser.save();
+      return res.send({
+        message: "User Registered Successfully",
+        data: newUser,
+        status: true,
+      });
+    } else {
+      return res.send({ message: "Avatar", status: false });
+    }
   } catch (e) {
     console.log(e);
     res.send({ message: e.message, status: false });
   }
 });
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -58,27 +64,6 @@ router.post("/login", async (req, res) => {
       message: "Something Went wrong ,Please Try Again later",
       status: false,
     });
-  }
-});
-
-router.post("/avatar/:id", async (req, res) => {
-  try {
-    const userId = req.params.id;
-    const { image } = req.body;
-
-    await user.findByIdAndUpdate(userId, {
-      isAvatarSet: true,
-      avatar: image,
-    });
-
-    return res.send({
-      isSet: true,
-      image: image,
-      message: "Image successfully updated",
-    });
-  } catch (e) {
-    console.log(e.message);
-    return res.send({ message: e.message, isSet: false });
   }
 });
 
