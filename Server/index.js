@@ -32,7 +32,7 @@ const server = app.listen(port, async () => {
 
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://chat-app-gilt-pi.vercel.app",
     credentials: true,
   },
 });
