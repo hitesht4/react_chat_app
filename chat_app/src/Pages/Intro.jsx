@@ -12,7 +12,7 @@ const Intro = () => {
   const { chatter } = useContext(AuthContext);
   const navigate = useNavigate();
   const getUsers = async (id) => {
-    let r = await axios.get(`http://localhost:5000/users/${id}`);
+    let r = await axios.get(`https://chat-app-four.onrender.com/users/${id}`);
     setContacts(r.data);
   };
   useEffect(() => {

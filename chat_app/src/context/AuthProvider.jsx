@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const signup = async (user) => {
     let { data } = await axios.post(
-      "https://chat-app-four.onrender.com/users/register",
+      "https://chat-app-four.onrender.com/users/signup",
       user
     );
     console.log(data);
