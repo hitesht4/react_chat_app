@@ -8,7 +8,9 @@ const users = require("./src/controllers/user.controller");
 const avatars = require("./src/controllers/avatar.controller");
 const message = require("./src/controllers/message.controller");
 const socket = require("socket.io");
+const mongoose = require("mongoose");
 
+mongoose.set("strictQuery", true);
 app.get("/", (req, res) => {
   res.send("Welcome to chat Api");
 });
