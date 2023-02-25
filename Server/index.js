@@ -20,8 +20,12 @@ app.use("/avatars", avatars);
 app.use("/messages", message);
 
 const server = app.listen(port, async () => {
-  connect();
-  console.log("Listening to port 5000");
+  try {
+    await connect();
+    console.log(`Listening to port ${port}`);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 const io = socket(server, {
