@@ -11,15 +11,15 @@ const socket = require("socket.io");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to chat Api");
+});
+
 app.use(cors());
 app.use(express.json());
 app.use("/users", users);
 app.use("/avatars", avatars);
 app.use("/messages", message);
-
-app.get("/", (req, res) => {
-  res.send("Welcome to chat Api");
-});
 
 const server = app.listen(port, async () => {
   connect();
