@@ -10,7 +10,9 @@ function AvatarModel() {
   const [lgShow, setLgShow] = useState(false);
 
   const getData = async () => {
-    let { data } = await axios.get(`http://localhost:5000/avatars`);
+    let { data } = await axios.get(
+      `https://chat-app-four.onrender.com/avatars`
+    );
     setAvatar(data);
   };
   useEffect(() => {

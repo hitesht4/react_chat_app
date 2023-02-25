@@ -18,13 +18,19 @@ const AuthProvider = ({ children }) => {
   });
   const navigate = useNavigate();
   const signup = async (user) => {
-    let { data } = await axios.post("http://localhost:5000/users/signup", user);
+    let { data } = await axios.post(
+      "https://chat-app-four.onrender.com/users/register",
+      user
+    );
     console.log(data);
     return data;
   };
 
   const login = async (form) => {
-    let { data } = await axios.post("http://localhost:5000/users/login", form);
+    let { data } = await axios.post(
+      "https://chat-app-four.onrender.com/users/login",
+      form
+    );
     if (data.status) {
       localStorage.setItem("chat_app_user", JSON.stringify(data.user));
       setChatter({ ...data.user });

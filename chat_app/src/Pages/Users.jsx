@@ -11,7 +11,7 @@ const Users = () => {
 
   useEffect(() => {
     if (chatter) {
-      socket.current = io("http://localhost:5000");
+      socket.current = io("https://chat-app-four.onrender.com");
       socket.current.emit("add-user", chatter._id);
     }
   }, [chatter]);

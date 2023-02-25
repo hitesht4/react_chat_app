@@ -10,13 +10,16 @@ const ChatProvider = ({ children }) => {
   const socket = useRef();
 
   const postMessage = async (item) => {
-    await axios.post("http://localhost:5000/messages/add", item);
+    await axios.post("https://chat-app-four.onrender.com/messages/add", item);
     socket.current.emit("send-msg", item);
     let x = { message: item.message, fromSelf: true };
     setMessages([...messages, x]);
   };
   const getChatMsg = async (item) => {
-    let { data } = await axios.post("http://localhost:5000/messages", item);
+    let { data } = await axios.post(
+      "https://chat-app-four.onrender.com//messages",
+      item
+    );
     setMessages(data);
   };
 
