@@ -17,7 +17,7 @@ const ChatProvider = ({ children }) => {
   };
   const getChatMsg = async (item) => {
     let { data } = await axios.post(
-      "https://chat-app-four.onrender.com//messages",
+      "https://chat-app-four.onrender.com/messages",
       item
     );
     setMessages(data);
