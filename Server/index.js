@@ -8,8 +8,6 @@ const users = require("./src/controllers/user.controller");
 const avatars = require("./src/controllers/avatar.controller");
 const message = require("./src/controllers/message.controller");
 const socket = require("socket.io");
-const mongoose = require("mongoose");
-mongoose.set("strictQuery", true);
 
 app.get("/", (req, res) => {
   res.send("Welcome to chat Api");
@@ -28,7 +26,7 @@ const server = app.listen(port, async () => {
 
 const io = socket(server, {
   cors: {
-    origin: "http:localhost:3000",
+    origin: "http://localhost:3000",
     credentials: true,
   },
 });
